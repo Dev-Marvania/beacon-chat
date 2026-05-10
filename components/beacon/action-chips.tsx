@@ -50,23 +50,23 @@ const colorClasses = {
 
 export function ActionChips({ onChipClick }: ActionChipsProps) {
   return (
-    <div className="flex flex-wrap gap-2 px-4 py-3 border-t border-white/5">
+    <div className="flex gap-1.5 px-4 py-2 border-t border-white/5 overflow-x-auto">
       {chips.map((chip) => {
         const colors = colorClasses[chip.color as keyof typeof colorClasses]
         return (
           <button
             key={chip.label}
             onClick={() => onChipClick(chip.message)}
-            className={`group flex items-center gap-2 px-3 sm:px-4 py-2 mt-1 rounded-full glass-chip text-[#CBD5E1] text-xs sm:text-sm font-medium transition-all duration-300 hover:text-[#F8FAFC] hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-white/20 border border-white/10 ${colors.bg} ${colors.border} hover:shadow-lg ${colors.glow}`}
+            className={`group flex items-center gap-1.5 px-2.5 py-1.5 rounded-full glass-chip text-[#CBD5E1] text-xs font-medium transition-all duration-300 hover:text-[#F8FAFC] hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-white/20 border border-white/10 ${colors.bg} ${colors.border} hover:shadow-lg ${colors.glow} flex-shrink-0`}
             aria-label={chip.label}
           >
             <chip.icon 
-              className={`w-4 h-4 transition-colors ${colors.icon}`} 
+              className={`w-3.5 h-3.5 transition-colors ${colors.icon}`} 
               aria-hidden="true" 
             />
             <span className="whitespace-nowrap">{chip.label}</span>
             <ChevronRight 
-              className="w-3.5 h-3.5 text-white/30 group-hover:text-white/60 group-hover:translate-x-0.5 transition-all" 
+              className="w-3 h-3 text-white/30 group-hover:text-white/60 group-hover:translate-x-0.5 transition-all" 
               aria-hidden="true" 
             />
           </button>
