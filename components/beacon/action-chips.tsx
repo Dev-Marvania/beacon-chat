@@ -57,7 +57,7 @@ export function ActionChips({ onChipClick }: ActionChipsProps) {
           <button
             key={chip.label}
             onClick={() => onChipClick(chip.message)}
-            className={`group flex items-center gap-2 px-3 sm:px-4 py-2.5 rounded-full glass-chip text-[#CBD5E1] text-xs sm:text-sm font-medium transition-all duration-300 hover:text-[#F8FAFC] hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-white/20 border border-white/10 ${colors.bg} ${colors.border} hover:shadow-lg ${colors.glow}`}
+            className={`group flex items-center gap-2 px-3 sm:px-4 py-2 mt-1 rounded-full glass-chip text-[#CBD5E1] text-xs sm:text-sm font-medium transition-all duration-300 hover:text-[#F8FAFC] hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-white/20 border border-white/10 ${colors.bg} ${colors.border} hover:shadow-lg ${colors.glow}`}
             aria-label={chip.label}
           >
             <chip.icon 
