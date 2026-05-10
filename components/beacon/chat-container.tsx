@@ -1,0 +1,87 @@
+'use client'
+
+import { useState, useCallback } from 'react'
+import { ChatHeader } from './chat-header'
+import { MessageList, type Message } from './message-list'
+import { ActionChips } from './action-chips'
+import { InputDock } from './input-dock'
+
+const welcomeMessage: Message = {
+  id: '1',
+  content: "Hello, I'm here for you. This is a safe, anonymous space where you can share what's on your mind without judgment. Whether you're struggling right now, looking for support resources, or want to help someone you care about — I'm here to listen and guide you.",
+  isAI: true,
+  timestamp: 'Just now',
+}
+
+// Simulated AI responses for demo
+const aiResponses: Record<string, Message> = {
+  'I need help right now': {
+    id: '',
+    content: "I hear you, and I'm glad you reached out. You're not alone in this moment. Take a slow, deep breath with me. Can you tell me a bit more about what you're experiencing right now? I'm here to listen without judgment.",
+    isAI: true,
+  },
+  'Find local support': {
+    id: '',
+    content: "I'd be happy to help you find support nearby. I found a highly-rated resource in your area that may be able to help:",
+    isAI: true,
+    resourceCard: {
+      facilityName: 'Harbor Recovery Center',
+      distance: '2.3 miles away',
+      address: '1234 Healing Way, Suite 200',
+      phone: '(555) 123-4567',
+      availability: 'Open 24/7 • Beds Available',
+    },
+  },
+  'How to help a loved one': {
+    id: '',
+    content: "It takes courage to seek help for someone you care about. Supporting a loved one through addiction is challenging, but your presence matters more than you know. Let me share some approaches that have helped others in your situation...",
+    isAI: true,
+  },
+  'default': {
+    id: '',
+    content: "Thank you for sharing that with me. I want you to know that whatever you're going through, reaching out is an important first step. Would you like me to help you find local support resources, or would you prefer to talk through what's on your mind?",
+    isAI: true,
+  },
+}
+
+export function ChatContainer() {
+  const [messages, setMessages] = useState<Message[]>([welcomeMessage])
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleSendMessage = useCallback((content: string) => {
+    // Add user message
+    const userMessage: Message = {
+      id: `user-${Date.now()}`,
+      content,
+      isAI: false,
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+    }
+    setMessages((prev) => [...prev, userMessage])
+
+    // Simulate AI processing
+    setIsLoading(true)
+    setTimeout(() => {
+      const responseTemplate = aiResponses[content] || aiResponses['default']
+      const aiMessage: Message = {
+        ...responseTemplate,
+        id: `ai-${Date.now()}`,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      }
+      setMessages((prev) => [...prev, aiMessage])
+      setIsLoading(false)
+    }, 1500 + Math.random() * 1000)
+  }, [])
+
+  const handleChipClick = useCallback((message: string) => {
+    handleSendMessage(message)
+  }, [handleSendMessage])
+
+  return (
+    <div className="glass-panel rounded-2xl sm:rounded-3xl w-full max-w-3xl h-[calc(100vh-2rem)] sm:h-[calc(100vh-4rem)] max-h-[900px] flex flex-col overflow-hidden">
+      <ChatHeader />
+      <MessageList messages={messages} isLoading={isLoading} />
+      <ActionChips onChipClick={handleChipClick} />
+      <InputDock onSend={handleSendMessage} disabled={isLoading} />
+    </div>
+  )
+}
