@@ -13,29 +13,6 @@ const welcomeMessage: Message = {
   timestamp: 'Just now',
 }
 
-// Pre-populated user response for demo
-const userResponse: Message = {
-  id: '2',
-  content: "Find local support resources",
-  isAI: false,
-  timestamp: 'Just now',
-}
-
-// Pre-populated AI response with resource card
-const aiResourceResponse: Message = {
-  id: '3',
-  content: "I found a highly-rated recovery center near you. This information comes from our verified database of licensed facilities:",
-  isAI: true,
-  timestamp: 'Just now',
-  resourceCard: {
-    facilityName: 'Hope Valley Recovery Center',
-    distance: '2.4 miles away',
-    address: '1847 Serenity Lane, Suite 300',
-    phone: '(555) 789-0123',
-    availability: 'Open 24/7 • Accepting New Patients',
-  },
-}
-
 // Simulated AI responses for demo
 const aiResponses: Record<string, Message> = {
   'I need help right now': {
@@ -68,7 +45,7 @@ const aiResponses: Record<string, Message> = {
 }
 
 export function ChatContainer() {
-  const [messages, setMessages] = useState<Message[]>([welcomeMessage, userResponse, aiResourceResponse])
+  const [messages, setMessages] = useState<Message[]>([welcomeMessage])
   const [isLoading, setIsLoading] = useState(false)
 
   const handleSendMessage = useCallback((content: string) => {
