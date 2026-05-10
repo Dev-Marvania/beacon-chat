@@ -33,11 +33,11 @@ export function ResourceCard({
           </div>
         </div>
         
-        {/* Verified Badge */}
+        {/* Verified Data Badge */}
         {isVerified && (
-          <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30">
-            <BadgeCheck className="w-3 h-3 text-emerald-400" aria-hidden="true" />
-            <span className="text-[10px] font-medium text-emerald-400">Verified</span>
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 shadow-sm shadow-emerald-500/10">
+            <BadgeCheck className="w-3.5 h-3.5 text-emerald-400" aria-hidden="true" />
+            <span className="text-[10px] font-semibold text-emerald-400 tracking-wide uppercase">Verified Data</span>
           </div>
         )}
       </div>
