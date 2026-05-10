@@ -8,9 +8,32 @@ import { InputDock } from './input-dock'
 
 const welcomeMessage: Message = {
   id: '1',
-  content: "Hello, I'm here for you. This is a safe, anonymous space where you can share what's on your mind without judgment. Whether you're struggling right now, looking for support resources, or want to help someone you care about — I'm here to listen and guide you.",
+  content: "Welcome to Beacon. This is a secure, anonymous space. To make sure I get you the right kind of support immediately, tell me what brings you here today?",
   isAI: true,
   timestamp: 'Just now',
+}
+
+// Pre-populated user response for demo
+const userResponse: Message = {
+  id: '2',
+  content: "Find local support resources",
+  isAI: false,
+  timestamp: 'Just now',
+}
+
+// Pre-populated AI response with resource card
+const aiResourceResponse: Message = {
+  id: '3',
+  content: "I found a highly-rated recovery center near you. This information comes from our verified database of licensed facilities:",
+  isAI: true,
+  timestamp: 'Just now',
+  resourceCard: {
+    facilityName: 'Hope Valley Recovery Center',
+    distance: '2.4 miles away',
+    address: '1847 Serenity Lane, Suite 300',
+    phone: '(555) 789-0123',
+    availability: 'Open 24/7 • Accepting New Patients',
+  },
 }
 
 // Simulated AI responses for demo
@@ -20,19 +43,19 @@ const aiResponses: Record<string, Message> = {
     content: "I hear you, and I'm glad you reached out. You're not alone in this moment. Take a slow, deep breath with me. Can you tell me a bit more about what you're experiencing right now? I'm here to listen without judgment.",
     isAI: true,
   },
-  'Find local support': {
+  'Find local support resources': {
     id: '',
-    content: "I'd be happy to help you find support nearby. I found a highly-rated resource in your area that may be able to help:",
+    content: "I found a highly-rated recovery center near you. This information comes from our verified database of licensed facilities:",
     isAI: true,
     resourceCard: {
-      facilityName: 'Harbor Recovery Center',
-      distance: '2.3 miles away',
-      address: '1234 Healing Way, Suite 200',
-      phone: '(555) 123-4567',
-      availability: 'Open 24/7 • Beds Available',
+      facilityName: 'Hope Valley Recovery Center',
+      distance: '2.4 miles away',
+      address: '1847 Serenity Lane, Suite 300',
+      phone: '(555) 789-0123',
+      availability: 'Open 24/7 • Accepting New Patients',
     },
   },
-  'How to help a loved one': {
+  'I want to help a loved one': {
     id: '',
     content: "It takes courage to seek help for someone you care about. Supporting a loved one through addiction is challenging, but your presence matters more than you know. Let me share some approaches that have helped others in your situation...",
     isAI: true,
@@ -45,7 +68,7 @@ const aiResponses: Record<string, Message> = {
 }
 
 export function ChatContainer() {
-  const [messages, setMessages] = useState<Message[]>([welcomeMessage])
+  const [messages, setMessages] = useState<Message[]>([welcomeMessage, userResponse, aiResourceResponse])
   const [isLoading, setIsLoading] = useState(false)
 
   const handleSendMessage = useCallback((content: string) => {
