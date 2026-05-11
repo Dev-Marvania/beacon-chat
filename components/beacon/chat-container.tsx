@@ -8,44 +8,83 @@ import { InputDock } from './input-dock'
 
 const welcomeMessage: Message = {
   id: '1',
-  content: "Welcome to Beacon. This is a secure, anonymous space. To make sure I get you the right kind of support immediately, tell me what brings you here today?",
+  content: "Welcome to Beacon. I'm here to answer your questions about substances, help you navigate peer pressure, or share healthy ways to manage stress. Everything you ask is completely anonymous. What would you like to talk about?",
   isAI: true,
   timestamp: 'Just now',
 }
 
+// Pre-populated user response for demo
+const userResponse: Message = {
+  id: '2',
+  content: "Handling peer pressure",
+  isAI: false,
+  timestamp: 'Just now',
+}
+
+// Pre-populated AI response with coping strategy card
+const aiCopingResponse: Message = {
+  id: '3',
+  content: "Peer pressure can feel overwhelming, but you have more control than you might think. Here's a technique that many people find helpful when they're in the moment:",
+  isAI: true,
+  timestamp: 'Just now',
+  copingCard: {
+    title: "The 'Delay & Distract' Technique",
+    steps: [
+      "Pause and take a deep breath before responding",
+      "Say \"I need a minute\" or \"Let me think about it\"",
+      "Shift your focus — check your phone, get water, or step away",
+      "Remember: a real friend will respect your boundaries"
+    ],
+    actionLabel: 'Try a Guided Breathing Exercise',
+  },
+}
+
 // Simulated AI responses for demo
 const aiResponses: Record<string, Message> = {
-  'I need help right now': {
+  'Learn about a substance': {
     id: '',
-    content: "I hear you, and I'm glad you reached out. You're not alone in this moment. Take a slow, deep breath with me. Can you tell me a bit more about what you're experiencing right now? I'm here to listen without judgment.",
+    content: "I can help you understand the facts about different substances — their effects, risks, and what the science actually says. What substance would you like to learn more about? You can ask about anything, and remember, this conversation is completely anonymous.",
     isAI: true,
   },
-  'Find local support resources': {
+  'Handling peer pressure': {
     id: '',
-    content: "I found a highly-rated recovery center near you. This information comes from our verified database of licensed facilities:",
+    content: "Peer pressure can feel overwhelming, but you have more control than you might think. Here's a technique that many people find helpful when they're in the moment:",
     isAI: true,
-    resourceCard: {
-      facilityName: 'Hope Valley Recovery Center',
-      distance: '2.4 miles away',
-      address: '1847 Serenity Lane, Suite 300',
-      phone: '(555) 789-0123',
-      availability: 'Open 24/7 • Accepting New Patients',
+    copingCard: {
+      title: "The 'Delay & Distract' Technique",
+      steps: [
+        "Pause and take a deep breath before responding",
+        "Say \"I need a minute\" or \"Let me think about it\"",
+        "Shift your focus — check your phone, get water, or step away",
+        "Remember: a real friend will respect your boundaries"
+      ],
+      actionLabel: 'Try a Guided Breathing Exercise',
     },
   },
-  'I want to help a loved one': {
+  'Healthy stress relief': {
     id: '',
-    content: "It takes courage to seek help for someone you care about. Supporting a loved one through addiction is challenging, but your presence matters more than you know. Let me share some approaches that have helped others in your situation...",
+    content: "Finding healthy ways to manage stress is one of the best things you can do for yourself. Here are some science-backed techniques that can help you feel calmer and more in control:",
     isAI: true,
+    copingCard: {
+      title: "Quick Calm: 4-7-8 Breathing",
+      steps: [
+        "Inhale quietly through your nose for 4 seconds",
+        "Hold your breath for 7 seconds",
+        "Exhale completely through your mouth for 8 seconds",
+        "Repeat 3-4 times whenever you feel stressed"
+      ],
+      actionLabel: 'Try a Guided Breathing Exercise',
+    },
   },
   'default': {
     id: '',
-    content: "Thank you for sharing that with me. I want you to know that whatever you're going through, reaching out is an important first step. Would you like me to help you find local support resources, or would you prefer to talk through what's on your mind?",
+    content: "Thanks for sharing that with me. I'm here to help you learn, cope, and make informed decisions — no judgment, just support. Would you like to explore healthy stress relief techniques, learn about a substance, or talk about handling social pressure?",
     isAI: true,
   },
 }
 
 export function ChatContainer() {
-  const [messages, setMessages] = useState<Message[]>([welcomeMessage])
+  const [messages, setMessages] = useState<Message[]>([welcomeMessage, userResponse, aiCopingResponse])
   const [isLoading, setIsLoading] = useState(false)
 
   const handleSendMessage = useCallback((content: string) => {

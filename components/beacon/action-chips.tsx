@@ -1,6 +1,6 @@
 'use client'
 
-import { Heart, MapPin, Users, ChevronRight } from 'lucide-react'
+import { FlaskConical, Shield, Leaf, ChevronRight } from 'lucide-react'
 
 interface ActionChipsProps {
   onChipClick: (message: string) => void
@@ -8,22 +8,22 @@ interface ActionChipsProps {
 
 const chips = [
   {
-    label: 'I need help right now',
-    icon: Heart,
-    message: 'I need help right now',
-    color: 'rose',
-  },
-  {
-    label: 'Find local support resources',
-    icon: MapPin,
-    message: 'Find local support resources',
+    label: 'Learn about a substance',
+    icon: FlaskConical,
+    message: 'Learn about a substance',
     color: 'cyan',
   },
   {
-    label: 'I want to help a loved one',
-    icon: Users,
-    message: 'I want to help a loved one',
+    label: 'Handling peer pressure',
+    icon: Shield,
+    message: 'Handling peer pressure',
     color: 'amber',
+  },
+  {
+    label: 'Healthy stress relief',
+    icon: Leaf,
+    message: 'Healthy stress relief',
+    color: 'rose',
   },
 ]
 
