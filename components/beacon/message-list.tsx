@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react'
 import { ChatBubble } from './chat-bubble'
 import { ResourceCard } from './resource-card'
+import { CopingStrategyCard } from './coping-strategy-card'
 import { LoadingIndicator } from './loading-indicator'
 
 export interface Message {
@@ -16,6 +17,11 @@ export interface Message {
     address?: string
     phone?: string
     availability?: string
+  }
+  copingCard?: {
+    title: string
+    steps: string[]
+    actionLabel?: string
   }
 }
 
@@ -49,6 +55,13 @@ export function MessageList({ messages, isLoading }: MessageListProps) {
                 address={message.resourceCard.address}
                 phone={message.resourceCard.phone}
                 availability={message.resourceCard.availability}
+              />
+            )}
+            {message.copingCard && (
+              <CopingStrategyCard
+                title={message.copingCard.title}
+                steps={message.copingCard.steps}
+                actionLabel={message.copingCard.actionLabel}
               />
             )}
           </ChatBubble>
