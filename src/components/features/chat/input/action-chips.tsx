@@ -1,6 +1,6 @@
 'use client'
 
-import { BookOpen, LifeBuoy, Users, ChevronRight } from 'lucide-react'
+import { Heart, MapPin, Users, ChevronRight } from 'lucide-react'
 
 interface ActionChipsProps {
   onChipClick: (message: string) => void
@@ -8,22 +8,22 @@ interface ActionChipsProps {
 
 const chips = [
   {
-    label: 'Understanding substance risks',
-    icon: BookOpen,
-    message: 'Can you tell me about the risks associated with different substances?',
+    label: 'I need help right now',
+    icon: Heart,
+    message: 'I need help right now',
+    color: 'rose',
+  },
+  {
+    label: 'Find local support resources',
+    icon: MapPin,
+    message: 'Find local support resources',
     color: 'cyan',
   },
   {
-    label: 'How to handle peer pressure',
+    label: 'I want to help a loved one',
     icon: Users,
-    message: 'I need strategies for handling peer pressure to use drugs.',
+    message: 'I want to help a loved one',
     color: 'amber',
-  },
-  {
-    label: 'I need support right now',
-    icon: LifeBuoy,
-    message: 'I am struggling and need support right now.',
-    color: 'rose',
   },
 ]
 
